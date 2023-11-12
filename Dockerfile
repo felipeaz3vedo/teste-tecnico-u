@@ -4,9 +4,11 @@ WORKDIR /usr/app
 
 COPY package*.json ./
 
+COPY prisma ./prisma/
+
 RUN npm install
 
-COPY . . 
+COPY . .
 
 EXPOSE 5000
 
