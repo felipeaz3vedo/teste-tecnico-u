@@ -3,6 +3,7 @@ import { injectable } from 'inversify';
 import { AppError } from '../../../infra/errors/AppError';
 import { Patient } from '../../../entities/Patient';
 import { prisma } from '../../../libs/prisma';
+
 import { Ala, PatientRepository } from '../PatientRepository';
 
 @injectable()
@@ -36,6 +37,8 @@ export class PrismaPatientRepository implements PatientRepository {
   }
 
   async update(id: number, data: Partial<Patient>): Promise<Patient> {
+    await this.show(id);
+
     const patient = await prisma.patient.update({
       where: {
         id

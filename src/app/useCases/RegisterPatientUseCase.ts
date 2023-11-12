@@ -1,5 +1,7 @@
 import { inject, injectable } from 'inversify';
+
 import { RegisterPatientDTO } from '../DTOs/RegisterPatientDTO';
+
 import { PatientRepository } from '../repositories/PatientRepository';
 import { PrismaPatientRepository } from '../repositories/prisma/PrismaPatientRepository';
 
@@ -10,7 +12,14 @@ export class RegisterPatientUseCase {
     private readonly patientRepository: PatientRepository
   ) {}
 
-  async execute({ nomeCompleto, telefone, dataNascimento, sexo, ala, quarto }: RegisterPatientDTO) {
+  async execute({
+    nomeCompleto,
+    telefone,
+    dataNascimento,
+    sexo,
+    ala,
+    quarto
+  }: RegisterPatientDTO) {
     const patient = await this.patientRepository.register({
       nomeCompleto,
       telefone,

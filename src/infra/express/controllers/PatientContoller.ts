@@ -10,15 +10,15 @@ import {
 
 import { errorHandler } from '../../errors/errorHandler';
 
-import { createPatientSchema } from '../schemas/createPatientSchema';
-import { updatePatientSchema } from '../schemas/updatePatientSchema';
-
 import { ListPatientsUseCase } from '../../../app/useCases/ListPatientsUseCase';
 import { ShowPatientUseCase } from '../../../app/useCases/ShowPatientUseCase';
 import { RegisterPatientUseCase } from '../../../app/useCases/RegisterPatientUseCase';
 import { UpdatePatientUseCase } from '../../../app/useCases/UpdatePatientUseCase';
 import { RemoveParientUseCase } from '../../../app/useCases/RemoveParientUseCase';
+
 import { listPatientSchema } from '../schemas/listPatientSchema';
+import { registerPatientSchema } from '../schemas/registerPatientSchema';
+import { updatePatientSchema } from '../schemas/updatePatientSchema';
 
 type Query = {
   ala: 'A' | 'B';
@@ -70,7 +70,7 @@ export class PatientController {
   @httpPost('')
   async register(req: Request, res: Response): Promise<Response | void> {
     try {
-      const patientData = createPatientSchema.parse(req.body);
+      const patientData = registerPatientSchema.parse(req.body);
 
       const patient = await this.registerUseCase.execute(patientData);
 
