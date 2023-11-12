@@ -1,0 +1,11 @@
+{
+  "name": "teste-tecnico-unimed",
+  "version": "1.0.0",
+  "author": "Felipe de Azevedo Pessoa",
+  "description": "api para registro de pacientes",
+  "license": "ISC",
+  "main": "server.ts",
+  "scripts": {
+    "test": "vitest run"
+  }
+}
