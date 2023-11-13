@@ -59,6 +59,14 @@ cp .env.example .env
 ```
 &nbsp;
 
+* Instale as dependências do projeto
+
+```bash
+npm install
+```
+
+&nbsp;
+
 * Suba os containers
    
 ```bash
