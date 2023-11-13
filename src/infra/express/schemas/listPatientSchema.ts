@@ -4,7 +4,8 @@ export const listPatientSchema = z
   .object({
     ala: z
       .enum(['A', 'B'], {
-        errorMap: (issue, ctx) => ({
+        errorMap: () => ({
+          // eslint-disable-next-line quotes
           message: "Invalid value. Expect 'A' or 'B'"
         })
       })

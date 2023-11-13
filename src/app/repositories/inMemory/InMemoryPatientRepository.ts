@@ -2,6 +2,7 @@ import { injectable } from 'inversify';
 import { Patient } from '../../../entities/Patient';
 import { Ala, PatientRepository } from '../PatientRepository';
 import { AppError } from '../../../infra/errors/AppError';
+import { changeTimezone } from '../../../utils/changeTimezone';
 
 @injectable()
 export class InMemoryPatientRepository implements PatientRepository {
@@ -50,8 +51,8 @@ export class InMemoryPatientRepository implements PatientRepository {
       sexo: data.sexo,
       ala: data.ala,
       quarto: data.quarto,
-      updatedAt: new Date(),
-      createdAt: new Date()
+      dataAtualizacao: changeTimezone(new Date(), -3),
+      dataCriacao: changeTimezone(new Date(), -3)
     };
 
     this.patients.push(patient);
@@ -66,7 +67,8 @@ export class InMemoryPatientRepository implements PatientRepository {
 
     this.patients[index] = {
       ...this.patients[index],
-      ...data
+      ...data,
+      dataAtualizacao: changeTimezone(new Date(), -3)
     };
 
     const editedPatient = this.patients[index];

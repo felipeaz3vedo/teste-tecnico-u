@@ -1,6 +1,7 @@
 import { inject, injectable } from 'inversify';
 import { Ala, PatientRepository } from '../repositories/PatientRepository';
 import { PrismaPatientRepository } from '../repositories/prisma/PrismaPatientRepository';
+import { dateTimeToDate } from '../../utils/dateTimeToDate';
 
 @injectable()
 export class ListPatientsUseCase {
@@ -12,6 +13,12 @@ export class ListPatientsUseCase {
   async execute(ala?: Ala) {
     const patients = await this.patientRepository.list(ala);
 
-    return patients;
+    const formatedPatients = patients.map((patient) => {
+      patient.dataNascimento = dateTimeToDate(patient.dataNascimento);
+
+      return patient;
+    });
+
+    return formatedPatients;
   }
 }

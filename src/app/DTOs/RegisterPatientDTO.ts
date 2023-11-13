@@ -1,7 +1,7 @@
 export interface RegisterPatientDTO {
   nomeCompleto: string;
   telefone: string;
-  dataNascimento: Date;
+  dataNascimento: string;
   sexo: string;
   ala: 'A' | 'B';
   quarto: number;

@@ -4,6 +4,9 @@ import { RegisterPatientDTO } from '../DTOs/RegisterPatientDTO';
 
 import { PatientRepository } from '../repositories/PatientRepository';
 import { PrismaPatientRepository } from '../repositories/prisma/PrismaPatientRepository';
+import { dateTimeToDate } from '../../utils/dateTimeToDate';
+import { normalizePhoneNumber } from '../../utils/normalizePhoneNumber';
+import { convertStrToDateTime } from '../../utils/convertStrToDateTime';
 
 @injectable()
 export class RegisterPatientUseCase {
@@ -20,14 +23,19 @@ export class RegisterPatientUseCase {
     ala,
     quarto
   }: RegisterPatientDTO) {
+    const normalizedPhoneNumber = normalizePhoneNumber(telefone);
+    const birthDateObject = convertStrToDateTime(dataNascimento);
+
     const patient = await this.patientRepository.register({
       nomeCompleto,
-      telefone,
-      dataNascimento,
+      telefone: normalizedPhoneNumber,
+      dataNascimento: birthDateObject,
       sexo,
       ala,
       quarto
     });
+
+    patient.dataNascimento = dateTimeToDate(patient.dataNascimento);
 
     return patient;
   }

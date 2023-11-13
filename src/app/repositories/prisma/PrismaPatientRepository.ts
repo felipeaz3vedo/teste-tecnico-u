@@ -5,6 +5,7 @@ import { Patient } from '../../../entities/Patient';
 import { prisma } from '../../../libs/prisma';
 
 import { Ala, PatientRepository } from '../PatientRepository';
+import { changeTimezone } from '../../../utils/changeTimezone';
 
 @injectable()
 export class PrismaPatientRepository implements PatientRepository {
@@ -31,7 +32,13 @@ export class PrismaPatientRepository implements PatientRepository {
   }
 
   async register(data: Patient): Promise<Patient> {
-    const patient = await prisma.patient.create({ data });
+    const patient = await prisma.patient.create({
+      data: {
+        ...data,
+        dataAtualizacao: changeTimezone(new Date(), -3),
+        dataCriacao: changeTimezone(new Date(), -3)
+      }
+    });
 
     return patient;
   }
@@ -43,7 +50,10 @@ export class PrismaPatientRepository implements PatientRepository {
       where: {
         id
       },
-      data
+      data: {
+        ...data,
+        dataAtualizacao: changeTimezone(new Date(), -3)
+      }
     });
 
     return patient;

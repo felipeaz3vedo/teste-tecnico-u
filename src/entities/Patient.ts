@@ -2,10 +2,10 @@ export interface Patient {
   id?: number;
   nomeCompleto: string;
   telefone: string;
-  dataNascimento: Date;
+  dataNascimento: Date | string;
   sexo: string;
   ala: string;
   quarto: number;
-  updatedAt?: Date;
-  createdAt?: Date;
+  dataAtualizacao?: Date;
+  dataCriacao?: Date;
 }
