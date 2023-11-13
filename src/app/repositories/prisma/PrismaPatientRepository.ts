@@ -13,6 +13,9 @@ export class PrismaPatientRepository implements PatientRepository {
     const patients = await prisma.patient.findMany({
       where: {
         ala
+      },
+      orderBy: {
+        id: 'asc'
       }
     });
 
