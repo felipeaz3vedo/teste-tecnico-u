@@ -36,7 +36,19 @@ CRUD de pacientes utilizando os principios do SOLID.
   
 ### Etapas
 
-*  Entre na pasta raiz (teste-tecnico-u).
+* Clone o repositório.
+  
+```bash
+git clone https://github.com/felipeaz3vedo/teste-tecnico-u.git
+```
+
+&nbsp;
+
+*  Entre no diretório do projeto.
+
+```bash
+cd teste-tecnico-u
+```
    
 &nbsp;
 
@@ -122,7 +134,7 @@ coloque o nome do serviço do Postgres especicificado no arquivo docker-compose.
 ### Atualizar o registro de um paciente
 
 + Médoto: **PATCH**
-+ Endpoint: `http://localhost:5000/patients`
++ Endpoint: `http://localhost:5000/patients/:id`
 + Route Param: `id` - id do paciente
 + Exemplo de endpoint com query param: `http://localhost:5000/patients/1`
 + Campos:
@@ -146,4 +158,14 @@ coloque o nome do serviço do Postgres especicificado no arquivo docker-compose.
               "ala": "B",
               "quarto": 1
             }
+  
+<br>
+
+### Remover o registro de um paciente
+
++ Médoto: **DELETE**
++ Endpoint: `http://localhost:5000/patients/:id`
++ Route Param: `id` - id do paciente
++ Exemplo de endpoint com query param: `http://localhost:5000/patients/1`
+
 
